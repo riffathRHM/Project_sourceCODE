@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="Registration.css">
+	<title>Registration</title>
+
+	<script type="text/javascript">
+		
+		function verifyPassword() {
+			var pw = document.getElementById('pwd').value;
+
+			if(pw.length<8){
+				document.getElementById('message').innerHTML = "**Password length must be atleast 8 characters!!";
+				return false;
+			}
+			if(pw.value.match("/^[A-Za-z]\w{7,14}$/")){
+				return true;
+			}
+
+			else{
+				document.getElementById('message').innerHTML ="**Password should consist atleast one uppercase,lowercase,number and a special character!!";
+				return false;
+			}
+		}
+	</script>
+</head>
+<body align = "center">
+	<div class = "box">
+	
+		<h1>Membership Registration</h1>
+		<form name = "Registration_Form" method="post" action="insert.php" onsubmit="return verifyPassword()">
+			<b>First Name : </b><input type="text" name="fname" required><br>
+			<b>Last Name : </b><input type="text" name="lname" required><br>
+			<b>Email ID : </b><input type="email" name="email" required><br><br>
+			<b>Date of Birth : </b><input type="date" name="dob" required><br><br>
+			<b>Gender: </b>
+			  <input type="radio" name="gender" value = "m" required> Male
+			  <input type="radio" name="gender" value = "f" required> Female<br><br>
+			<b>Contact No :</b><input type="tel" name="contact" pattern="[0-9]{10}" placeholder="07XXXXXXXX" required><br><br>		
+			<b>Address: </b><textarea name = "address" rows="2" cols="20" required></textarea><br><br>
+			<b>Username: </b><input type="text" name="uname" required><br>
+			<b>Password: </b><input type="password" name="pwd" id ="pwd" required><br>
+			<span id ="message" style="color: red;"></span><br>
+			<b>Medical Conditions: </b><textarea name = "medical" rows="2" cols="20"  required></textarea><br><br>
+			<b>Membership plans : </b>
+			<input type="radio" name="plan" value= "monthly" required>Monthly
+			<input type="radio" name="plan" value= "annual"  required>Annual<br><br>
+			<input type="submit" name="submit" value="Register">
+
+		</form>
+	</div>
+</body>
+</html>
